@@ -1,0 +1,6 @@
+<!-- res/drawable/rounded_grey.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <size android:height="@dimen/_85mdp"  android:width="@dimen/_130mdp"/>
+    <solid android:color="#41000000" /> <!-- Grey color -->
+    <corners android:radius="10dp" /> <!-- Set the desired radius for rounded corners -->
+</shape>

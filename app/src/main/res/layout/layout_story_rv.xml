@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/story_rv_img"
+            android:layout_width="@dimen/_130mdp"
+            android:layout_height="@dimen/_85mdp"
+            android:layout_marginEnd="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/storya"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:riv_border_color="#754EF3C4"
+            app:riv_border_width="2dip"
+            app:riv_corner_radius="10dip"
+            app:riv_mutate_background="true"
+            app:riv_oval="false"
+            app:riv_tile_mode="clamp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_rv_img"
+            android:layout_width="@dimen/_25mdp"
+            android:layout_height="@dimen/_25mdp"
+            android:layout_margin="@dimen/_5mdp"
+            android:padding="@dimen/_2mdp"
+            android:src="@drawable/gaurav"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.060000002" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/white_bg"
+            android:padding="@dimen/_2mdp"
+            app:layout_constraintBottom_toBottomOf="@id/profile_rv_img"
+            app:layout_constraintEnd_toEndOf="@id/profile_rv_img"
+            app:layout_constraintStart_toStartOf="@+id/profile_rv_img"
+            app:layout_constraintTop_toTopOf="@id/profile_rv_img"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/tv_name_rv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gaurav"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_8mdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.083"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.902"
+            tools:ignore="TextSizeCheck" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
