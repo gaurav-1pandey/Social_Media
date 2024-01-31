@@ -7,10 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.example.socialmedia.R
-import com.example.socialmedia.StoryModel
+import com.example.socialmedia.Models.StoryModel
 import com.makeramen.roundedimageview.RoundedImageView
 import de.hdodenhof.circleimageview.CircleImageView
 

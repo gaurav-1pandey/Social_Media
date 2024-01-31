@@ -1,4 +1,4 @@
-package com.example.socialmedia
+package com.example.socialmedia.Models
 
 data class StoryModel(
     val name:String,

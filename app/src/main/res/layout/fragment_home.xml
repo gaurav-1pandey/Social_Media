@@ -93,7 +93,7 @@
                         android:layout_height="wrap_content">
 
                         <com.makeramen.roundedimageview.RoundedImageView
-                            android:id="@+id/story_image"
+                            android:id="@+id/post_image"
                             android:layout_width="@dimen/_130mdp"
                             android:layout_height="@dimen/_85mdp"
                             android:layout_marginLeft="16dp"
@@ -116,10 +116,10 @@
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:background="@drawable/shade_add_story_img"
-                            app:layout_constraintBottom_toBottomOf="@+id/story_image"
-                            app:layout_constraintEnd_toEndOf="@+id/story_image"
-                            app:layout_constraintStart_toStartOf="@+id/story_image"
-                            app:layout_constraintTop_toTopOf="@+id/story_image" />
+                            app:layout_constraintBottom_toBottomOf="@+id/post_image"
+                            app:layout_constraintEnd_toEndOf="@+id/post_image"
+                            app:layout_constraintStart_toStartOf="@+id/post_image"
+                            app:layout_constraintTop_toTopOf="@+id/post_image" />
 
                         <View
                             android:id="@+id/view4"
@@ -138,11 +138,11 @@
                             android:layout_height="@dimen/_30mdp"
                             android:padding="-5dp"
                             android:src="@drawable/add_story_img"
-                            app:layout_constraintBottom_toBottomOf="@+id/story_image"
-                            app:layout_constraintEnd_toEndOf="@+id/story_image"
+                            app:layout_constraintBottom_toBottomOf="@+id/post_image"
+                            app:layout_constraintEnd_toEndOf="@+id/post_image"
                             app:layout_constraintHorizontal_bias="0.505"
-                            app:layout_constraintStart_toStartOf="@+id/story_image"
-                            app:layout_constraintTop_toTopOf="@+id/story_image"
+                            app:layout_constraintStart_toStartOf="@+id/post_image"
+                            app:layout_constraintTop_toTopOf="@+id/post_image"
                             app:layout_constraintVertical_bias="0.29" />
 
                         <TextView
@@ -181,6 +181,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/post_rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"

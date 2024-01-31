@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.socialmedia.Adapter.PostAdapter
 import com.example.socialmedia.Adapter.StoryAdapter
+import com.example.socialmedia.Models.PostModel
 import com.example.socialmedia.R
-import com.example.socialmedia.StoryModel
+import com.example.socialmedia.Models.StoryModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -64,24 +66,45 @@ class HomeFrag : Fragment() {
             }
     }
 
-    lateinit var recyclerView:RecyclerView
-    lateinit var adapter:StoryAdapter
+    lateinit var storyrecyclerView:RecyclerView
+    lateinit var postrecyclerView:RecyclerView
+
+    lateinit var storyadapter:StoryAdapter
+    lateinit var postadapter:PostAdapter
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var array=ArrayList<StoryModel>()
+        var arraypost=ArrayList<PostModel>()
 
-        recyclerView=view.findViewById(R.id.story_rv)
+        storyrecyclerView=view.findViewById(R.id.story_rv)
         array.add(StoryModel("Rajnish",R.drawable.storya,1,R.drawable.profilea))
         array.add(StoryModel("Ankit",R.drawable.storyb,1,R.drawable.profileb))
         array.add(StoryModel("Mamta",R.drawable.storyc,1,R.drawable.profilea))
         array.add(StoryModel("Priyanshu",R.drawable.storyd,1,R.drawable.profilea))
-        adapter= StoryAdapter(view.context,array)
+
+
+
+        arraypost.add(PostModel("gaurav","NIEt,Bachlaor of Technology",R.drawable.gaurav,R.drawable.storyb,47,21,7))
+        arraypost.add(PostModel("Ravi","Good man,Ballia,Post Office",R.drawable.storya,R.drawable.storyc,49,25,11,false, isliked = true, isshared = false))
+        arraypost.add(PostModel("Shubhangi","TD College Ballia,Bachlaor of Commerce",R.drawable.shubhangi,R.drawable.storyd,59,21,17,false,true,true))
+        arraypost.add(PostModel("gaurav","NIEt,Bachlaor of Technology",R.drawable.gaurav,R.drawable.storyb,47,21,7))
+
+        postrecyclerView=view.findViewById(R.id.post_rv)
+        var postlayoutrv=LinearLayoutManager(context,LinearLayoutManager.VERTICAL, false)
+        postadapter=PostAdapter(view.context,arraypost)
+        postrecyclerView.layoutManager=postlayoutrv
+        postrecyclerView.isNestedScrollingEnabled=false
+        postrecyclerView.adapter=postadapter
+
+
+
+        storyadapter= StoryAdapter(view.context,array)
         var layoutrv=LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
-        recyclerView.layoutManager=layoutrv
-        recyclerView.isNestedScrollingEnabled=false
-        recyclerView.adapter=adapter
+        storyrecyclerView.layoutManager=layoutrv
+        storyrecyclerView.isNestedScrollingEnabled=false
+        storyrecyclerView.adapter=storyadapter
 
 
     }
