@@ -1,15 +1,331 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:diagonal="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/profile_img"
     android:layout_height="match_parent"
+    android:background="@color/app_bg"
     tools:context=".Fragments.ProfileFrag">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <com.github.florent37.diagonallayout.DiagonalLayout
+        android:id="@+id/diagonalLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_230mdp"
+        app:diagonal_angle="10"
+
+        diagonal:diagonal_direction="left"
+        diagonal:diagonal_position="bottom"
+        diagonal:layout_constraintEnd_toEndOf="parent"
+        diagonal:layout_constraintHorizontal_bias="0.5"
+        diagonal:layout_constraintStart_toStartOf="parent"
+        diagonal:layout_constraintTop_toTopOf="parent">
+
+
+        <com.flaviofaria.kenburnsview.KenBurnsView
+            android:id="@+id/img_anim"
+
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_230mdp"
+            android:scaleType="fitStart"
+            android:src="@drawable/profileb" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+
+            android:layout_height="@dimen/_230mdp"
+            android:background="@drawable/shade_add_story_img" />
+
+
+    </com.github.florent37.diagonallayout.DiagonalLayout>
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/noti_profile_rv_img"
+        android:layout_width="@dimen/_100mdp"
+        android:layout_height="@dimen/_100mdp"
+        android:layout_margin="@dimen/_5mdp"
+        android:padding="@dimen/_4mdp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/profiled"
+        diagonal:civ_border_color="@color/white"
+        diagonal:civ_border_width="@dimen/_5mdp"
+        diagonal:layout_constraintBottom_toBottomOf="@+id/diagonalLayout"
+        diagonal:layout_constraintEnd_toEndOf="parent"
+        diagonal:layout_constraintStart_toStartOf="@+id/diagonalLayout"
+        diagonal:layout_constraintTop_toTopOf="@+id/diagonalLayout"
+        diagonal:layout_constraintVertical_bias="1.1" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="@dimen/_27mdp"
+        android:layout_height="@dimen/_27mdp"
+        android:src="@drawable/img_profile_verified"
+        diagonal:layout_constraintBottom_toBottomOf="@+id/noti_profile_rv_img"
+        diagonal:layout_constraintEnd_toEndOf="@+id/noti_profile_rv_img"
+        diagonal:layout_constraintHorizontal_bias="0.9"
+        diagonal:layout_constraintStart_toStartOf="@+id/noti_profile_rv_img"
+        diagonal:layout_constraintTop_toTopOf="@+id/noti_profile_rv_img"
+        diagonal:layout_constraintVertical_bias="0.9" />
+
+    <TextView
+        android:id="@+id/tv_profile_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7mdp"
+        android:fontFamily="@font/aclonica"
+        android:text="Gaurav Pandey"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_20mdp"
+        android:textStyle="bold"
+
+        diagonal:layout_constraintEnd_toEndOf="@+id/noti_profile_rv_img"
+        diagonal:layout_constraintStart_toStartOf="@+id/noti_profile_rv_img"
+        diagonal:layout_constraintTop_toBottomOf="@+id/diagonalLayout" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4mdp"
+        android:fontFamily="@font/aclonica"
+        android:text="Android Devloper"
+        android:textColor="@color/grey"
+        diagonal:layout_constraintEnd_toEndOf="@+id/tv_profile_name"
+        diagonal:layout_constraintHorizontal_bias="0.493"
+        diagonal:layout_constraintStart_toStartOf="@+id/tv_profile_name"
+        diagonal:layout_constraintTop_toBottomOf="@+id/tv_profile_name" />
+
+
+    <View
+        android:id="@+id/view_img_add_friend"
+        android:layout_width="@dimen/_27mdp"
+        android:layout_height="@dimen/_27mdp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/bg_add_story_img"
+        android:backgroundTint="@color/red"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintTop_toTopOf="@+id/view_img_comment"
+        diagonal:layout_constraintEnd_toStartOf="@+id/view_img_comment"
+        diagonal:layout_constraintHorizontal_bias="0.5"
+        diagonal:layout_constraintStart_toStartOf="parent"
+        diagonal:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <ImageView
+        android:id="@+id/img_add_friend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_profile_add_friend"
+        app:layout_constraintBottom_toBottomOf="@+id/view_img_add_friend"
+        app:layout_constraintEnd_toEndOf="@+id/view_img_add_friend"
+        app:layout_constraintHorizontal_bias="0.27"
+        app:layout_constraintStart_toStartOf="@+id/view_img_add_friend"
+        app:layout_constraintTop_toTopOf="@+id/view_img_add_friend" />
+
+    <View
+        android:id="@+id/view_img_comment"
+        android:layout_width="@dimen/_27mdp"
+        android:layout_height="@dimen/_27mdp"
+        android:background="@drawable/bg_add_story_img"
+        android:backgroundTint="@color/purple_700"
+        app:layout_constraintTop_toTopOf="@+id/view_img_call"
+        diagonal:layout_constraintEnd_toStartOf="@+id/view_img_call"
+        diagonal:layout_constraintHorizontal_bias="0.5"
+        diagonal:layout_constraintStart_toEndOf="@+id/view_img_add_friend"
+        diagonal:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <ImageView
+        android:id="@+id/img_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_profile_comment_white"
+        app:layout_constraintBottom_toBottomOf="@+id/view_img_comment"
+        app:layout_constraintEnd_toEndOf="@+id/view_img_comment"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="@+id/view_img_comment"
+        app:layout_constraintTop_toTopOf="@+id/view_img_comment"
+        app:layout_constraintVertical_bias="0.68" />
+
+    <View
+        android:id="@+id/view_img_call"
+        android:layout_width="@dimen/_27mdp"
+        android:layout_height="@dimen/_27mdp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_add_story_img"
+        android:backgroundTint="@color/dark_green"
+        diagonal:layout_constraintEnd_toEndOf="parent"
+        diagonal:layout_constraintHorizontal_bias="0.5"
+        diagonal:layout_constraintStart_toEndOf="@+id/view_img_comment"
+        diagonal:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <ImageView
+        android:id="@+id/img_call"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_profile_call"
+        app:layout_constraintBottom_toBottomOf="@+id/view_img_call"
+        app:layout_constraintEnd_toEndOf="@+id/view_img_call"
+        app:layout_constraintStart_toStartOf="@+id/view_img_call"
+        app:layout_constraintTop_toTopOf="@+id/view_img_call" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_16mdp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="#E5FBFA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_img_comment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_profile_follower"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="7dp"
+                android:text="Followers"
+                app:layout_constraintEnd_toStartOf="@+id/view2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="2dp"
+                android:layout_height="25dp"
+                android:background="@color/grey"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_profile_friends"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tv_profile_follower"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_profile_friends"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="7dp"
+                android:text="Friends"
+                app:layout_constraintEnd_toStartOf="@+id/view7"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/view2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view7"
+                android:layout_width="2dp"
+                android:layout_height="25dp"
+                android:background="@color/grey"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_profile_photos"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tv_profile_friends"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_profile_photos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="7dp"
+                android:text="Photos"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/view7"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp"
+                android:text="288"
+                android:textColor="@color/grey"
+                android:textSize="20dp"
+                android:textStyle="bold"
+
+
+                app:layout_constraintEnd_toEndOf="@+id/tv_profile_friends"
+                app:layout_constraintStart_toStartOf="@+id/tv_profile_friends"
+                app:layout_constraintTop_toBottomOf="@+id/tv_profile_friends" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp"
+                android:text="52"
+                android:textColor="@color/grey"
+                android:textSize="20dp"
+                android:textStyle="bold"
+
+
+                app:layout_constraintEnd_toEndOf="@+id/tv_profile_photos"
+                app:layout_constraintStart_toStartOf="@+id/tv_profile_photos"
+                app:layout_constraintTop_toBottomOf="@+id/tv_profile_photos" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp"
+                android:text="4532"
+                android:textColor="@color/grey"
+                android:textSize="20dp"
+                android:textStyle="bold"
+
+                app:layout_constraintEnd_toEndOf="@+id/tv_profile_follower"
+                app:layout_constraintStart_toStartOf="@+id/tv_profile_follower"
+                app:layout_constraintTop_toBottomOf="@+id/tv_profile_follower" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_15mdp"
+        android:fontFamily="@font/aclonica"
+        android:text="Success is not final, failure is not fatal: It is the courage to continue that counts. - Winston Churchill"
+        android:textAlignment="center"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/_15mdp"
+        app:layout_constraintEnd_toEndOf="@+id/cardView"
+        app:layout_constraintStart_toStartOf="@+id/cardView"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="My Friends"
+        android:textSize="16dp"
+        android:textColor="@color/grey"
+        android:textStyle="bold"
+        android:layout_margin="@dimen/_5mdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/profile_friend_rv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:contentDescription="@string/app_name"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12"
+        tools:listitem="@layout/layout_profile_friends_rv" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

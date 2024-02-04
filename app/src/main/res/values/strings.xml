@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Social Media</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="register_new_user"><u>Register new user!</u></string>
+    <string name="already_a_user">Already a User</string>
 </resources>

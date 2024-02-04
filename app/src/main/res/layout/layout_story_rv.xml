@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
@@ -25,7 +26,7 @@
             app:riv_tile_mode="clamp" />
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_rv_img"
+            android:id="@+id/noti_profile_rv_img"
             android:layout_width="@dimen/_25mdp"
             android:layout_height="@dimen/_25mdp"
             android:layout_margin="@dimen/_5mdp"
@@ -39,15 +40,15 @@
             app:layout_constraintVertical_bias="0.060000002" />
 
         <View
-            android:id="@+id/view28"
+            android:id="@+id/profile_rv_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/white_bg"
             android:padding="@dimen/_2mdp"
-            app:layout_constraintBottom_toBottomOf="@id/profile_rv_img"
-            app:layout_constraintEnd_toEndOf="@id/profile_rv_img"
-            app:layout_constraintStart_toStartOf="@+id/profile_rv_img"
-            app:layout_constraintTop_toTopOf="@id/profile_rv_img"
+            app:layout_constraintBottom_toBottomOf="@id/noti_profile_rv_img"
+            app:layout_constraintEnd_toEndOf="@id/noti_profile_rv_img"
+            app:layout_constraintStart_toStartOf="@+id/noti_profile_rv_img"
+            app:layout_constraintTop_toTopOf="@id/noti_profile_rv_img"
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView

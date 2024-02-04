@@ -1,14 +1,17 @@
 package com.example.socialmedia.Fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.socialmedia.Adapter.PostAdapter
 import com.example.socialmedia.Adapter.StoryAdapter
+import com.example.socialmedia.LoginActivity
 import com.example.socialmedia.Models.PostModel
 import com.example.socialmedia.R
 import com.example.socialmedia.Models.StoryModel
@@ -18,11 +21,7 @@ import com.example.socialmedia.Models.StoryModel
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFrag.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class HomeFrag : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -87,7 +86,7 @@ class HomeFrag : Fragment() {
 
 
         arraypost.add(PostModel("gaurav","NIEt,Bachlaor of Technology",R.drawable.gaurav,R.drawable.storyb,47,21,7))
-        arraypost.add(PostModel("Ravi","Good man,Ballia,Post Office",R.drawable.storya,R.drawable.storyc,49,25,11,false, isliked = true, isshared = false))
+        arraypost.add(PostModel("Ravi","Good man,Ballia,Post Office",R.drawable.profilea,R.drawable.storyc,49,25,11,false, isliked = true, isshared = false))
         arraypost.add(PostModel("Shubhangi","TD College Ballia,Bachlaor of Commerce",R.drawable.shubhangi,R.drawable.storyd,59,21,17,false,true,true))
         arraypost.add(PostModel("gaurav","NIEt,Bachlaor of Technology",R.drawable.gaurav,R.drawable.storyb,47,21,7))
 
@@ -95,7 +94,7 @@ class HomeFrag : Fragment() {
         var postlayoutrv=LinearLayoutManager(context,LinearLayoutManager.VERTICAL, false)
         postadapter=PostAdapter(view.context,arraypost)
         postrecyclerView.layoutManager=postlayoutrv
-        postrecyclerView.isNestedScrollingEnabled=false
+        postrecyclerView.isNestedScrollingEnabled=true
         postrecyclerView.adapter=postadapter
 
 
@@ -105,6 +104,11 @@ class HomeFrag : Fragment() {
         storyrecyclerView.layoutManager=layoutrv
         storyrecyclerView.isNestedScrollingEnabled=false
         storyrecyclerView.adapter=storyadapter
+
+        var discover=view.findViewById<TextView>(R.id.tv_home_discover)
+        discover.setOnClickListener({
+            startActivity(Intent(view.context,LoginActivity::class.java))
+        })
 
 
     }

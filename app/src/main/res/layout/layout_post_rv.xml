@@ -8,7 +8,7 @@
 
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_rv_img"
+        android:id="@+id/noti_profile_rv_img"
         android:layout_width="@dimen/_40mdp"
         android:layout_height="@dimen/_40mdp"
         android:layout_margin="@dimen/_5mdp"
@@ -18,15 +18,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/view28"
+        android:id="@+id/profile_rv_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/orange"
         android:padding="@dimen/_2mdp"
-        app:layout_constraintBottom_toBottomOf="@id/profile_rv_img"
-        app:layout_constraintEnd_toEndOf="@id/profile_rv_img"
-        app:layout_constraintStart_toStartOf="@+id/profile_rv_img"
-        app:layout_constraintTop_toTopOf="@id/profile_rv_img" />
+        app:layout_constraintBottom_toBottomOf="@id/noti_profile_rv_img"
+        app:layout_constraintEnd_toEndOf="@id/noti_profile_rv_img"
+        app:layout_constraintStart_toStartOf="@+id/noti_profile_rv_img"
+        app:layout_constraintTop_toTopOf="@id/noti_profile_rv_img" />
 
     <TextView
         android:id="@+id/tv_post_name"
@@ -37,9 +37,9 @@
         android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/profile_rv_img"
-        app:layout_constraintStart_toEndOf="@+id/profile_rv_img"
-        app:layout_constraintTop_toTopOf="@+id/profile_rv_img"
+        app:layout_constraintBottom_toBottomOf="@+id/noti_profile_rv_img"
+        app:layout_constraintStart_toEndOf="@+id/noti_profile_rv_img"
+        app:layout_constraintTop_toTopOf="@+id/noti_profile_rv_img"
         app:layout_constraintVertical_bias="0.22000003" />
 
     <TextView
@@ -51,13 +51,13 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_post_name" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/img_post_more_option"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/profile_rv_img"
+        app:layout_constraintBottom_toBottomOf="@+id/noti_profile_rv_img"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/profile_rv_img"
+        app:layout_constraintTop_toTopOf="@+id/noti_profile_rv_img"
         app:srcCompat="@drawable/img_post_more" />
 
 
@@ -74,7 +74,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_rv_img"
+        app:layout_constraintTop_toBottomOf="@+id/noti_profile_rv_img"
         app:riv_border_color="#11120F"
         app:riv_border_width="0.5dip"
         app:riv_corner_radius="10dip"

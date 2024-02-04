@@ -8,7 +8,7 @@
 
 
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -25,7 +25,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/tv_home_discover"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_16mdp"
@@ -33,12 +33,12 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/_24mdp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/profile_rv_img"
+                app:layout_constraintBottom_toBottomOf="@+id/noti_profile_rv_img"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/profile_rv_img" />
+                app:layout_constraintTop_toTopOf="@+id/noti_profile_rv_img" />
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/profile_rv_img"
+                android:id="@+id/noti_profile_rv_img"
                 android:layout_width="@dimen/_40mdp"
                 android:layout_height="@dimen/_40mdp"
                 android:layout_margin="@dimen/_5mdp"
@@ -50,15 +50,15 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <View
-                android:id="@+id/view28"
+                android:id="@+id/profile_rv_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@drawable/orange"
                 android:padding="@dimen/_2mdp"
-                app:layout_constraintBottom_toBottomOf="@id/profile_rv_img"
-                app:layout_constraintEnd_toEndOf="@id/profile_rv_img"
-                app:layout_constraintStart_toStartOf="@+id/profile_rv_img"
-                app:layout_constraintTop_toTopOf="@id/profile_rv_img" />
+                app:layout_constraintBottom_toBottomOf="@id/noti_profile_rv_img"
+                app:layout_constraintEnd_toEndOf="@id/noti_profile_rv_img"
+                app:layout_constraintStart_toStartOf="@+id/noti_profile_rv_img"
+                app:layout_constraintTop_toTopOf="@id/noti_profile_rv_img" />
 
             <View
                 android:id="@+id/view3"
@@ -69,12 +69,12 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view28" />
+                app:layout_constraintTop_toBottomOf="@+id/profile_rv_view" />
 
             <HorizontalScrollView
                 android:id="@+id/horizontalScrollView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:contentDescription="disp"
                 android:scrollbars="none"
@@ -83,12 +83,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view3">
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/add_story_cons"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
 
@@ -162,11 +163,13 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/story_rv"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         android:layout_height="match_parent"
+                        android:layout_toEndOf="@id/add_story_cons"
                         android:layout_marginLeft="@dimen/_16mdp"
-                        tools:listitem="@layout/layout_story_rv" />
-                </LinearLayout>
+                         />
+                </RelativeLayout>
             </HorizontalScrollView>
 
             <View
@@ -195,7 +198,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/app_bg"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lot_reg"
+        android:layout_width="@dimen/_200mdp"
+        android:layout_height="@dimen/_200mdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.165"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="anim.json"
+        app:lottie_loop="true"
+        app:lottie_speed="1.5" />
+
+    <TextView
+        android:id="@+id/tv_reg"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Welcome to Social Media"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/lot_reg"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="@+id/lot_reg"
+        app:layout_constraintTop_toBottomOf="@+id/lot_reg" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stay connected with friends"
+        app:layout_constraintEnd_toEndOf="@+id/tv_reg"
+        app:layout_constraintStart_toStartOf="@+id/tv_reg"
+        app:layout_constraintTop_toBottomOf="@+id/tv_reg" />
+
+    <EditText
+        android:id="@+id/ed_reg_name"
+        android:layout_width="@dimen/_250mdp"
+
+        android:layout_height="@dimen/_35mdp"
+        android:paddingLeft="@dimen/_5mdp"
+
+        android:drawableLeft="@drawable/img_email_left"
+        android:drawablePadding="@dimen/_4mdp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:background="@drawable/entry_bg"
+        android:inputType="text"
+        android:textColorHint="@color/light_grey"
+        android:hint="Email"
+        android:textColor="@color/grey"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <EditText
+        android:id="@+id/ed_login_pass"
+        android:layout_width="@dimen/_250mdp"
+
+        android:layout_height="@dimen/_35mdp"
+        android:textColor="@color/grey"
+        android:textColorHint="@color/light_grey"
+
+        android:layout_marginTop="20dp"
+        android:background="@drawable/entry_bg"
+        android:drawableLeft="@drawable/img_pass_left2"
+        android:drawablePadding="@dimen/_4mdp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:paddingLeft="@dimen/_5mdp"
+        app:layout_constraintEnd_toEndOf="@+id/ed_reg_name"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/ed_reg_name"
+        app:layout_constraintTop_toBottomOf="@+id/ed_reg_name" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_26mdp"
+        android:text="Login"
+        android:textSize="@dimen/_16mdp"
+        android:textColor="@color/white"
+
+        android:backgroundTint="#EBEF58E8"
+        app:layout_constraintEnd_toEndOf="@+id/ed_login_pass"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="@+id/ed_login_pass"
+        app:layout_constraintTop_toBottomOf="@+id/ed_login_pass" />
+
+    <TextView
+        android:id="@+id/tv_register_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textStyle="italic"
+
+        android:text="@string/register_new_user"
+        android:textColor="@color/grey"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/btn_login"
+        app:layout_constraintStart_toStartOf="@+id/btn_login"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
