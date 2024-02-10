@@ -5,7 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.socialmedia.Adapter.SearchAdapter
+import com.example.socialmedia.Models.UserModel
 import com.example.socialmedia.R
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.database
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +34,12 @@ class SearchFrag : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    lateinit var database: FirebaseDatabase
+    lateinit var auth: FirebaseAuth
+    lateinit var rv:RecyclerView
+    lateinit var flist:ArrayList<UserModel>
+    lateinit var adapter:SearchAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,5 +75,62 @@ class SearchFrag : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        database= Firebase.database("https://social-media-2cb36-default-rtdb.europe-west1.firebasedatabase.app")
+        auth=Firebase.auth
+        rv=view.findViewById(R.id.rv_search)
+        flist= ArrayList()
+        var layoutmanager=LinearLayoutManager(view.context)
+        adapter=SearchAdapter(view.context)
+
+
+        database.reference.child("Users").addValueEventListener(object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    for(i in snapshot.children){
+                        val u=i.getValue(UserModel::class.java)
+                        flist.add(u!!)
+
+                    }
+                    adapter.updatelist(flist)
+
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+
+
+        rv.adapter=adapter
+        rv.layoutManager=layoutmanager
+
+
+        var search=view.findViewById<SearchView>(R.id.searchView)
+
+        search.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(s: String?): Boolean {
+                if (s!=null){
+                    adapter.filter(s)
+                }
+                return true
+            }
+
+        })
+
+
+
+
     }
 }

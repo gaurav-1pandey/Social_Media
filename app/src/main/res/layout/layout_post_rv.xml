@@ -47,6 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="wannabe MBA Student, learner"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/tv_post_name"
         app:layout_constraintTop_toBottomOf="@+id/tv_post_name" />
 
@@ -87,35 +88,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:drawablePadding="8dp"
         android:layout_marginTop="8dp"
         android:drawableStart="@drawable/img_post_like"
+        android:drawablePadding="8dp"
         android:text="237"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/post_image" />
+
     <TextView
-    android:id="@+id/tv_post_comment"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
-    android:drawablePadding="8dp"
-    android:layout_marginTop="8dp"
-    android:drawableStart="@drawable/img_post_comment"
-    android:text="51"
-    app:layout_constraintStart_toEndOf="@id/tv_post_like"
-        app:layout_constraintTop_toBottomOf="@+id/post_image"
-     />
+
+        android:id="@+id/tv_post_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:drawableStart="@drawable/img_post_comment"
+        android:drawablePadding="8dp"
+        android:text="51"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@id/tv_post_like"
+        app:layout_constraintTop_toBottomOf="@+id/post_image" />
+
     <TextView
         android:id="@+id/tv_post_share"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:drawablePadding="8dp"
         android:layout_marginTop="8dp"
         android:drawableLeft="@drawable/img_post_forward"
+
+        android:drawablePadding="8dp"
         android:text="15"
+        android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@id/tv_post_comment"
-        app:layout_constraintTop_toBottomOf="@+id/post_image"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/post_image" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

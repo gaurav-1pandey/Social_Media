@@ -42,6 +42,16 @@
     </com.github.florent37.diagonallayout.DiagonalLayout>
 
 
+    <ImageView
+        android:id="@+id/btn_choose_image"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/img_btn_profile_image"
+        app:layout_constraintBottom_toBottomOf="@+id/diagonalLayout"
+        app:layout_constraintStart_toStartOf="@+id/diagonalLayout" />
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/noti_profile_rv_img"
         android:layout_width="@dimen/_100mdp"
@@ -86,7 +96,7 @@
         diagonal:layout_constraintTop_toBottomOf="@+id/diagonalLayout" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tv_profile_prof"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_4mdp"
@@ -111,7 +121,7 @@
         diagonal:layout_constraintEnd_toStartOf="@+id/view_img_comment"
         diagonal:layout_constraintHorizontal_bias="0.5"
         diagonal:layout_constraintStart_toStartOf="parent"
-        diagonal:layout_constraintTop_toBottomOf="@+id/textView3" />
+        diagonal:layout_constraintTop_toBottomOf="@+id/tv_profile_prof" />
 
     <ImageView
         android:id="@+id/img_add_friend"
@@ -134,7 +144,7 @@
         diagonal:layout_constraintEnd_toStartOf="@+id/view_img_call"
         diagonal:layout_constraintHorizontal_bias="0.5"
         diagonal:layout_constraintStart_toEndOf="@+id/view_img_add_friend"
-        diagonal:layout_constraintTop_toBottomOf="@+id/textView3" />
+        diagonal:layout_constraintTop_toBottomOf="@+id/tv_profile_prof" />
 
     <ImageView
         android:id="@+id/img_comment"
@@ -159,7 +169,7 @@
         diagonal:layout_constraintEnd_toEndOf="parent"
         diagonal:layout_constraintHorizontal_bias="0.5"
         diagonal:layout_constraintStart_toEndOf="@+id/view_img_comment"
-        diagonal:layout_constraintTop_toBottomOf="@+id/textView3" />
+        diagonal:layout_constraintTop_toBottomOf="@+id/tv_profile_prof" />
 
     <ImageView
         android:id="@+id/img_call"
@@ -192,6 +202,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="7dp"
                 android:text="Followers"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toStartOf="@+id/view2"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -214,6 +225,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="7dp"
                 android:text="Friends"
+                android:textColor="@color/black"
+
                 app:layout_constraintEnd_toStartOf="@+id/view7"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/view2"
@@ -236,6 +249,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="7dp"
                 android:text="Photos"
+                android:textColor="@color/black"
+
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/view7"
@@ -306,12 +321,12 @@
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="My Friends"
-        android:textSize="16dp"
-        android:textColor="@color/grey"
-        android:textStyle="bold"
         android:layout_margin="@dimen/_5mdp"
+        android:layout_marginStart="10dp"
+        android:text="My Followings"
+        android:textColor="@color/grey"
+        android:textSize="16dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 

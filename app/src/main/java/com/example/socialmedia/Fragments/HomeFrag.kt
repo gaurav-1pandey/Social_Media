@@ -1,6 +1,5 @@
 package com.example.socialmedia.Fragments
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,10 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.socialmedia.Adapter.PostAdapter
 import com.example.socialmedia.Adapter.StoryAdapter
-import com.example.socialmedia.LoginActivity
 import com.example.socialmedia.Models.PostModel
 import com.example.socialmedia.R
 import com.example.socialmedia.Models.StoryModel
+import com.google.firebase.Firebase
+import com.google.firebase.database.database
+import com.google.firebase.storage.FirebaseStorage
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,6 +27,8 @@ class HomeFrag : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    var dlcp="kk"
+    var dlpp="kk"
 
 
 
@@ -106,8 +109,18 @@ class HomeFrag : Fragment() {
         storyrecyclerView.adapter=storyadapter
 
         var discover=view.findViewById<TextView>(R.id.tv_home_discover)
+        val database= Firebase.database("https://social-media-2cb36-default-rtdb.europe-west1.firebasedatabase.app")
+
+        val kk= FirebaseStorage.getInstance().reference
         discover.setOnClickListener({
-            startActivity(Intent(view.context,LoginActivity::class.java))
+
+
+            kk.child("default_img").child("dp1.jpg").downloadUrl.addOnSuccessListener {
+                dlcp=it.toString()
+                dlpp=it.toString()
+            }
+            database.reference.child("default_links").child("dppic").setValue(dlpp)
+            database.reference.child("default_links").child("dcpic").setValue(dlcp)
         })
 
 

@@ -1,0 +1,19 @@
+<!-- res/drawable/orange_circle_with_stroke.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Outer Circle (Stroke) -->
+    <item>
+        <shape
+            android:shape="oval">
+            <solid android:color="@android:color/transparent" /> <!-- Transparent center -->
+            <stroke
+                android:color="#20DDC7"
+                android:width="2dp"
+                />
+        </shape>
+    </item>
+
+
+
+
+</layer-list>

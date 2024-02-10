@@ -59,6 +59,7 @@ class StoryAdapter(val context:Context, var list: ArrayList<StoryModel>) : Recyc
 
     override fun onBindViewHolder(holder: mystoryVH, position: Int) {
         holder.name.setText(list.get(position).name)
+
         holder.profileimg.setImageBitmap(resizeDrawable(context,list.get(position).profile,200,200))
         holder.storyimg.setImageBitmap(resizeDrawable(context,list.get(position).story,200,300))
         Log.d("callbyme","call{$position}")

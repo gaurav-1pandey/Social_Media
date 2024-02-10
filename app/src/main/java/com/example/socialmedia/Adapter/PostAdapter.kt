@@ -43,6 +43,7 @@ class PostAdapter(var context: Context,var post:ArrayList<PostModel>):RecyclerVi
             holder.share.setCompoundDrawablesWithIntrinsicBounds(R.drawable.img_post_forward,0,0,0)
         }
 
+
         holder.image_profile.setImageBitmap(resizeDrawable(context,post.get(position).profile,200,200))
         holder.image_post.setImageBitmap(resizeDrawable(context,post.get(position).post,200,300))
 

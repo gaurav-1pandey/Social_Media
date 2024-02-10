@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/search_profile_pic"
+        android:layout_width="@dimen/_55mdp"
+        android:layout_height="@dimen/_55mdp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+
+
+        android:padding="@dimen/_3mdp"
+        android:src="@drawable/gaurav"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <View
+        android:id="@+id/profile_rv_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/cyan_circle"
+        android:padding="@dimen/_2mdp"
+        app:layout_constraintBottom_toBottomOf="@id/search_profile_pic"
+        app:layout_constraintEnd_toEndOf="@id/search_profile_pic"
+        app:layout_constraintStart_toStartOf="@+id/search_profile_pic"
+        app:layout_constraintTop_toTopOf="@id/search_profile_pic" />
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="TextView"
+        android:textSize="@dimen/_14font_mdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/search_profile_pic"
+        app:layout_constraintStart_toEndOf="@+id/search_profile_pic"
+        app:layout_constraintTop_toTopOf="@+id/search_profile_pic"
+        app:layout_constraintVertical_bias="0.32" />
+
+    <TextView
+        android:id="@+id/profession"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/username"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/username"
+        app:layout_constraintTop_toBottomOf="@+id/username" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_follow"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginEnd="16dp"
+        android:paddingHorizontal="@dimen/_5mdp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_10mdp"
+        android:background="@drawable/btn_follow_bg"
+        android:text="Follow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.486" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
