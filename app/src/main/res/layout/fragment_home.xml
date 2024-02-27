@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_bg"
     tools:context=".Fragments.HomeFrag">
 
 
@@ -88,17 +87,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/add_story_cons"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginVertical="8dp"
+
+
                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        android:padding="3dp">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="wrap_content"
+                        android:layout_margin="1dp"
                         android:layout_height="wrap_content">
 
                         <com.makeramen.roundedimageview.RoundedImageView
                             android:id="@+id/post_image"
                             android:layout_width="@dimen/_130mdp"
                             android:layout_height="@dimen/_85mdp"
-                            android:layout_marginLeft="16dp"
+
 
                             android:scaleType="centerCrop"
 
@@ -162,13 +171,16 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
+                    </com.google.android.material.card.MaterialCardView>
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/story_rv"
                         android:layout_width="wrap_content"
+
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         android:layout_height="match_parent"
                         android:layout_toEndOf="@id/add_story_cons"
-                        android:layout_marginLeft="@dimen/_16mdp"
+                        android:layout_marginLeft="8dp"
                          />
                 </RelativeLayout>
             </HorizontalScrollView>
@@ -188,9 +200,7 @@
                 android:id="@+id/post_rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:listitem="@layout/layout_post_rv"
                 app:layout_constraintStart_toStartOf="parent"

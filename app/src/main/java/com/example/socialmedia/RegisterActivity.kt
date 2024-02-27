@@ -15,7 +15,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
-
 class RegisterActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     lateinit var useremail: String
@@ -38,7 +37,6 @@ class RegisterActivity : AppCompatActivity() {
             anim.playAnimation()
         })
         userlist=ArrayList()
-
         var tv_already_user = findViewById<TextView>(R.id.tv_already_user)
         tv_already_user.setOnClickListener {
             database.getReference("Users").addValueEventListener(object :ValueEventListener{
@@ -50,18 +48,14 @@ class RegisterActivity : AppCompatActivity() {
                         }
                     }
                 }
-
                 override fun onCancelled(error: DatabaseError) {
                     Toast.makeText(this@RegisterActivity,"${error.message}",Toast.LENGTH_SHORT).show()
                 }
             })
-
             for (i in userlist){
                 Toast.makeText(this,"${i.username} ${i.email}",Toast.LENGTH_SHORT).show()
             }
-
         }
-
         btnSignup = findViewById(R.id.btn_reg)
         etname = findViewById(R.id.ed_reg_name)
         etemail = findViewById(R.id.ed_reg_email)
@@ -83,6 +77,7 @@ class RegisterActivity : AppCompatActivity() {
                                 .show()
                             var userID: String = task.result.user!!.uid
                             var user = UserModel(username, useremail, userprofession, userpass)
+                            user.userid=userID
                             database.reference.child("Users").child(userID).setValue(user)
                             Toast.makeText(
                                 this,

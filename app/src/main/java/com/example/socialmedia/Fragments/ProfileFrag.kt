@@ -13,7 +13,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.socialmedia.Adapter.ProfileFriendsAdapted
+import com.example.socialmedia.Adapter.FollowersAdapted
 import com.example.socialmedia.EditProfileActivity
 import com.example.socialmedia.Models.FollowerModel
 import com.example.socialmedia.Models.UserModel
@@ -41,9 +41,9 @@ class ProfileFrag : Fragment() {
 
     private var param1: String? = null
     private var param2: String? = null
-    lateinit var friendsAdapter:ProfileFriendsAdapted
+    lateinit var friendsAdapter:FollowersAdapted
     lateinit var rvfriend:RecyclerView
-    lateinit var arrayfriend:ArrayList<FollowerModel>
+    lateinit var arrayfollowers:ArrayList<FollowerModel>
 
     lateinit var tv_bio:TextView
 
@@ -53,7 +53,7 @@ class ProfileFrag : Fragment() {
     lateinit var storageReference:StorageReference
     lateinit var imageL:String
     lateinit var gotUser:UserModel
-
+    lateinit var cuserid:String
     lateinit var tv_name:TextView
     lateinit var tv_prof:TextView
     lateinit var tv_follower:TextView
@@ -89,20 +89,13 @@ class ProfileFrag : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         kenBurnsView = view.findViewById(R.id.img_anim)
-        arrayfriend=ArrayList()
-//        arrayfriend.add(FollowerModel(R.drawable.profilea))
-//        arrayfriend.add(FollowerModel(R.drawable.profileb))
-//        arrayfriend.add(FollowerModel(R.drawable.profilec))
-//        arrayfriend.add(FollowerModel(R.drawable.profiled))
-//        arrayfriend.add(FollowerModel(R.drawable.profilea))
-//        arrayfriend.add(FollowerModel(R.drawable.profileb))
-//        arrayfriend.add(FollowerModel(R.drawable.profilec))
-//        arrayfriend.add(FollowerModel(R.drawable.profiled))
-        rvfriend=view.findViewById(R.id.profile_friend_rv)
-        friendsAdapter= ProfileFriendsAdapted(view.context,arrayfriend)
-        var pf=view.findViewById<CircleImageView>(R.id.noti_profile_rv_img)
-        rvfriend.layoutManager=LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
-        rvfriend.adapter=friendsAdapter
+        arrayfollowers=ArrayList()
+
+
+
+//        rvfriend=view.findViewById(R.id.profile_friend_rv)
+//        friendsAdapter= ProfileFriendsAdapted(view.context,arrayfollowers)
+
 
 
         btnchosimg= view.findViewById(R.id.btn_choose_image)
@@ -132,6 +125,36 @@ class ProfileFrag : Fragment() {
         tv_name=view.findViewById(R.id.tv_profile_name)
         val ppic=view.findViewById<CircleImageView>(R.id.noti_profile_rv_img)
         tv_prof=view.findViewById(R.id.tv_profile_prof)
+
+        rvfriend=view.findViewById(R.id.profile_friend_rv)
+        friendsAdapter= FollowersAdapted(view.context)
+        rvfriend.layoutManager=LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+        rvfriend.adapter=friendsAdapter
+
+        database.reference.child("Users").child("${FirebaseAuth.getInstance().currentUser?.uid}")
+            .child("followers").addValueEventListener(object :ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+
+                        for (i in snapshot.children){
+                            val u=i.getValue(FollowerModel::class.java)
+                            arrayfollowers.add(u!!)
+
+                        }
+                    friendsAdapter.updatelist(arrayfollowers)
+
+
+
+
+
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(requireContext(),"Failed",Toast.LENGTH_SHORT).show()
+                }
+
+            })
+
+
 
 
 

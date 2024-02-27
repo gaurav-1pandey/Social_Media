@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.socialmedia.Adapter.SearchAdapter
+import com.example.socialmedia.Models.FollowerModel
 import com.example.socialmedia.Models.UserModel
 import com.example.socialmedia.R
 import com.google.firebase.Firebase
@@ -40,7 +42,7 @@ class SearchFrag : Fragment() {
     lateinit var rv:RecyclerView
     lateinit var flist:ArrayList<UserModel>
     lateinit var adapter:SearchAdapter
-
+    var arrayfollowers=ArrayList<FollowerModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -88,9 +90,13 @@ class SearchFrag : Fragment() {
         adapter=SearchAdapter(view.context)
 
 
+
+
+
         database.reference.child("Users").addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
+                    flist.clear()
                     for(i in snapshot.children){
                         val u=i.getValue(UserModel::class.java)
                         flist.add(u!!)
@@ -106,11 +112,38 @@ class SearchFrag : Fragment() {
             }
 
         })
+        arrayfollowers.add(FollowerModel("ff","ss"))
+
+        database.reference.child("Users").child("${FirebaseAuth.getInstance().currentUser?.uid}")
+            .child("followers").addValueEventListener(object :ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+
+                        for (i in snapshot.children) {
+                            val u = i.getValue(FollowerModel::class.java)
+                            arrayfollowers.add(u!!)
+
+                        }
+                        adapter.updatefollower(arrayfollowers)
+
+                    }
+
+
+
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(requireContext(),"Failed", Toast.LENGTH_SHORT).show()
+                }
+
+            })
+
 
 
 
         rv.adapter=adapter
         rv.layoutManager=layoutmanager
+
 
 
         var search=view.findViewById<SearchView>(R.id.searchView)

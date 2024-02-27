@@ -10,6 +10,7 @@ import com.example.socialmedia.R
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 import com.google.firebase.database.database
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -53,7 +54,8 @@ class EditProfileActivity : AppCompatActivity() {
         storage= FirebaseStorage.getInstance().reference
 
         val getcpic=registerForActivityResult(ActivityResultContracts.GetContent()){
-            var imageref=storage.child("photos").child("${FirebaseAuth.getInstance().currentUser?.uid}").child("cpic")
+            var imageref=storage.child("photos")
+                .child("${FirebaseAuth.getInstance().currentUser?.uid}").child("cpic")
             imageref.putFile(it!!).addOnSuccessListener {
 
                 imageref.downloadUrl.addOnSuccessListener { url->
@@ -68,7 +70,8 @@ class EditProfileActivity : AppCompatActivity() {
         cpiclink="https://firebasestorage.googleapis.com/v0/b/social-media-2cb36.appspot.com/o/default_img%2Fdp1.jpg?alt=media&token=f328ede1-aeb6-4859-b8f0-a03e0932eeb3"
 
         val getppic=registerForActivityResult(ActivityResultContracts.GetContent()){
-            var imageref=storage.child("photos").child("${FirebaseAuth.getInstance().currentUser?.uid}").child("ppic")
+            var imageref=storage.child("photos")
+                .child("${FirebaseAuth.getInstance().currentUser?.uid}").child("ppic")
             imageref.putFile(it!!).addOnSuccessListener {
                 imageref.downloadUrl.addOnSuccessListener { url->
                     ppiclink=url.toString()
@@ -111,10 +114,10 @@ class EditProfileActivity : AppCompatActivity() {
             if(e.isEmpty()){
                 e=b
             }
-            var usr=UserModel(c,cuser?.email.
-                    toString(),d,
-                "no pass saved",cpiclink,ppiclink,e,
-                nickname.text.toString(),dob.text.toString())
+            var usr=UserModel(username = c,email=cuser?.email.
+                    toString(), profession = d,
+                password = "no pass saved", cpic = cpiclink, ppic = ppiclink, bio = e,
+                nickname = nickname.text.toString(), dob = dob.text.toString(), userid = "${Firebase.auth.currentUser?.uid}")
 
             database.reference.child("Users").
             child("${FirebaseAuth.getInstance().
