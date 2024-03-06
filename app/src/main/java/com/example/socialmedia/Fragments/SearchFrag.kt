@@ -115,7 +115,7 @@ class SearchFrag : Fragment() {
         arrayfollowers.add(FollowerModel("ff","ss"))
 
         database.reference.child("Users").child("${FirebaseAuth.getInstance().currentUser?.uid}")
-            .child("followers").addValueEventListener(object :ValueEventListener{
+            .child("following").addValueEventListener(object :ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
 

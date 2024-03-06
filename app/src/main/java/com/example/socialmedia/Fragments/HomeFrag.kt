@@ -10,25 +10,33 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.socialmedia.Adapter.PostAdapter
 import com.example.socialmedia.Adapter.StoryAdapter
+import com.example.socialmedia.Models.FollowerModel
 import com.example.socialmedia.Models.PostModel
 import com.example.socialmedia.R
 import com.example.socialmedia.Models.StoryModel
+import com.example.socialmedia.Models.UserModel
 import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
+import com.google.firebase.database.getValue
 import com.google.firebase.storage.FirebaseStorage
+import com.squareup.picasso.Picasso
+import de.hdodenhof.circleimageview.CircleImageView
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 
 class HomeFrag : Fragment() {
-    // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
     var dlcp="kk"
     var dlpp="kk"
+    var postarray=ArrayList<PostModel>()
+
 
 
 
@@ -44,20 +52,10 @@ class HomeFrag : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFrag.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             HomeFrag().apply {
@@ -86,16 +84,9 @@ class HomeFrag : Fragment() {
         array.add(StoryModel("Mamta",R.drawable.storyc,1,R.drawable.profilea))
         array.add(StoryModel("Priyanshu",R.drawable.storyd,1,R.drawable.profilea))
 
-
-
-        arraypost.add(PostModel("gaurav","NIEt,Bachlaor of Technology",R.drawable.gaurav,R.drawable.storyb,47,21,7))
-        arraypost.add(PostModel("Ravi","Good man,Ballia,Post Office",R.drawable.profilea,R.drawable.storyc,49,25,11,false, isliked = true, isshared = false))
-        arraypost.add(PostModel("Shubhangi","TD College Ballia,Bachlaor of Commerce",R.drawable.shubhangi,R.drawable.storyd,59,21,17,false,true,true))
-        arraypost.add(PostModel("gaurav","NIEt,Bachlaor of Technology",R.drawable.gaurav,R.drawable.storyb,47,21,7))
-
         postrecyclerView=view.findViewById(R.id.post_rv)
         var postlayoutrv=LinearLayoutManager(context,LinearLayoutManager.VERTICAL, false)
-        postadapter=PostAdapter(view.context,arraypost)
+        postadapter=PostAdapter(view.context)
         postrecyclerView.layoutManager=postlayoutrv
         postrecyclerView.isNestedScrollingEnabled=true
         postrecyclerView.adapter=postadapter
@@ -112,17 +103,88 @@ class HomeFrag : Fragment() {
         val database= Firebase.database("https://social-media-2cb36-default-rtdb.europe-west1.firebasedatabase.app")
 
         val kk= FirebaseStorage.getInstance().reference
-        discover.setOnClickListener({
+        database.reference.child("Users")
+        discover.setOnClickListener {
 
 
             kk.child("default_img").child("dp1.jpg").downloadUrl.addOnSuccessListener {
-                dlcp=it.toString()
-                dlpp=it.toString()
+                dlcp = it.toString()
+                dlpp = it.toString()
             }
             database.reference.child("default_links").child("dppic").setValue(dlpp)
             database.reference.child("default_links").child("dcpic").setValue(dlcp)
-        })
+        }
 
 
+        database.reference.child("Users").child("${FirebaseAuth.getInstance().currentUser?.uid}")
+            .child("following").addValueEventListener(object :ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()){
+                        for (k in snapshot.children){
+                            arraypost.clear()
+                            var fm=k.getValue(FollowerModel::class.java)
+                            database.reference.child("Users").child(fm!!.followerId).child("posts").addValueEventListener(
+                                object :ValueEventListener{
+                                    override fun onDataChange(snapshot: DataSnapshot) {
+                                        if (snapshot.exists()){
+
+                                            for (x in snapshot.children){
+                                                var tapost=x.getValue(PostModel::class.java)
+                                                arraypost.add(tapost!!)
+                                            }
+                                            postadapter.updatelist(arraypost)
+                                        }
+                                    }
+                                    override fun onCancelled(error: DatabaseError) {
+                                        TODO("Not yet implemented")
+                                    }
+
+                                }
+                            )
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+//        database.reference.child("Users").child("${FirebaseAuth.getInstance().currentUser?.uid}").child("posts")
+//            .addValueEventListener(object :ValueEventListener{
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                arraypost.clear()
+//                for (i in snapshot.children){
+//                    var tpostmodel=i.getValue(PostModel::class.java)
+//                    arraypost.add(tpostmodel!!)
+//                }
+//
+//                postadapter.updatelist(arraypost)
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//                TODO("Not yet implemented")
+//            }
+//
+//        })
+
+
+        var dashboardpic=view.findViewById<CircleImageView>(R.id.noti_profile_rv_img)
+
+        database.reference.child("Users").child("${FirebaseAuth.getInstance().currentUser?.uid}").addValueEventListener(
+            object :ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()){
+                        var userdata=snapshot.getValue(UserModel::class.java)
+                        Picasso.get().load(userdata?.ppic).into(dashboardpic)
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            }
+        )
     }
 }

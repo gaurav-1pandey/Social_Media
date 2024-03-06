@@ -37,37 +37,25 @@ class MainActivity : AppCompatActivity() {
         bottomNav=findViewById(R.id.chipNavigationBar)
         bottomNav.setItemSelected(R.id.home,true)
         shard= MySharedPreferences(applicationContext)
-
-
         toolbar=findViewById(R.id.toolbar)
         toolbar.title="My Profile"
         toolbar.setTitleTextColor(resources.getColor(R.color.white))
         toolbar.visibility= View.INVISIBLE
         setSupportActionBar(toolbar)
 
-
         toolbar.setOnMenuItemClickListener{menu->
             when(menu.itemId){
                 R.id.setting_menu_item-> {
-
                     Firebase.auth.signOut()
                     shard.saveString("islogin","no")
                     finish()
                     startActivity(Intent(this,LoginActivity::class.java))
-
-
-
                     true
-
                 }
                 else -> false
             }
 
         }
-
-
-
-
 
         bottomNav.setOnItemSelectedListener { id->
             var selected:Fragment=HomeFrag()
@@ -113,9 +101,8 @@ class MainActivity : AppCompatActivity() {
             true
 
         }
+
         supportFragmentManager.beginTransaction().replace(R.id.frame,HomeFrag()).commit()
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

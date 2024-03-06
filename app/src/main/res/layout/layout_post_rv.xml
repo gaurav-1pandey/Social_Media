@@ -5,12 +5,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/add_story_cons"
     android:layout_marginVertical="8dp"
-
+    android:clickable="true"
     android:layout_marginHorizontal="16dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="8dp"
-    app:cardElevation="4dp"
+    android:maxHeight="300dp"
+    app:rippleColor="@color/yellow"
+    android:outlineSpotShadowColor="@color/blue"
+    app:cardElevation="8dp"
+
     android:padding="3dp">
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -76,12 +80,14 @@
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/post_image"
         android:layout_width="0dp"
-        android:layout_height="@dimen/_150mdp"
+
+        android:layout_height="450dp"
 
         android:layout_marginTop="16dp"
         android:layout_marginHorizontal="2dp"
 
         android:scaleType="centerCrop"
+
 
         android:src="@drawable/storyb"
         app:layout_constraintEnd_toEndOf="parent"

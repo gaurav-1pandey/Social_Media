@@ -33,10 +33,7 @@ class SearchAdapter(var context: Context) : RecyclerView.Adapter<mysearchvh>() {
     var database: FirebaseDatabase=Firebase.database("https://social-media-2cb36-default-rtdb.europe-west1.firebasedatabase.app")
     lateinit var auth: FirebaseAuth
     var list = ArrayList<UserModel>()
-    var arrayfollowers:ArrayList<FollowerModel> = ArrayList(listOf(FollowerModel("ab","ac")))
-
-
-
+    var arrayfollowers:ArrayList<FollowerModel> = ArrayList()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): mysearchvh {
         var inflater = LayoutInflater.from(parent.context)
         var vi = inflater.inflate(R.layout.layout_search_rv, parent, false)
@@ -66,7 +63,6 @@ class SearchAdapter(var context: Context) : RecyclerView.Adapter<mysearchvh>() {
     fun updatefollower(lst:ArrayList<FollowerModel>){
         arrayfollowers.clear()
         arrayfollowers.addAll(lst)
-        Toast.makeText(context,"${list.size}",Toast.LENGTH_SHORT).show()
         notifyDataSetChanged()
     }
     @RequiresApi(Build.VERSION_CODES.O)
@@ -81,16 +77,12 @@ class SearchAdapter(var context: Context) : RecyclerView.Adapter<mysearchvh>() {
 
         var flag=0
         for (i in arrayfollowers){
-            Toast.makeText(context,i.followerId,Toast.LENGTH_SHORT).show()
             if (i.followerId.equals(list.get(position).userid)){
                 flag=1
 
                 break
                 }
         }
-
-
-
         if (flag==0){
             holder.btn_follow.text="follow"
             holder.btn_follow.setBackgroundResource(R.drawable.btn_follow_bg)
@@ -109,23 +101,26 @@ class SearchAdapter(var context: Context) : RecyclerView.Adapter<mysearchvh>() {
                 auth= Firebase.auth
 
                 var fm=FollowerModel("${auth.currentUser?.uid!!}",LocalTime.now().toString())
-
+                var fm2=FollowerModel("${list.get(position).userid}",LocalTime.now().toString())
                 val fc=list.get(position).followerCount.toInt()+1
+
                 database.reference.child("Users")
-                    .child("${list.get(position).userid}")
+                    .child(list.get(position).userid)
                     .child("followers")
                     .child("${auth.currentUser?.uid}")
                     .setValue(fm).addOnSuccessListener {
                         database.reference.child("Users")
-                            .child("${list.get(position).userid}")
+                            .child(list.get(position).userid)
                             .child("followerCount")
                             .setValue("${fc}").addOnSuccessListener {
                                 Toast.makeText(context,"following",Toast.LENGTH_SHORT).show()
-
                             }
                     }
 
-
+                database.reference.child("Users").child(auth.currentUser?.uid!!)
+                    .child("following")
+                    .child("${list.get(position).userid}")
+                    .setValue(fm2)
             }
             else {
                 holder.btn_follow.text = "follow"

@@ -12,7 +12,8 @@ data class UserModel(
     var nickname:String="your nick name",
     var dob:String="your dob",
     var followerCount:String="0",
-    var followingCount:String="0"
+    var followingCount:String="0",
+    var postcount:String="0"
 ):java.io.Serializable
 
 

@@ -8,11 +8,30 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.socialmedia.Models.PostModel
+import com.example.socialmedia.Models.UserModel
 import com.example.socialmedia.R
+import com.google.firebase.Firebase
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.database
 import com.makeramen.roundedimageview.RoundedImageView
+import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 
-class PostAdapter(var context: Context,var post:ArrayList<PostModel>):RecyclerView.Adapter<mypostvh>(){
+class PostAdapter(var context: Context):RecyclerView.Adapter<mypostvh>(){
+    var post=ArrayList<PostModel>()
+
+    var database: FirebaseDatabase = Firebase.database("https://social-media-2cb36-default-rtdb.europe-west1.firebasedatabase.app")
+
+
+    fun updatelist(listx:ArrayList<PostModel>){
+        post.clear()
+        post.addAll(listx)
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): mypostvh {
         var inflater=LayoutInflater.from(parent.context)
         var v=inflater.inflate(R.layout.layout_post_rv,parent,false)
@@ -30,6 +49,8 @@ class PostAdapter(var context: Context,var post:ArrayList<PostModel>):RecyclerVi
         holder.comment.text=post.get(position).share.toString()
 
 
+
+
         if(post.get(position).isliked){
             holder.like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.img_post_liked,0,0,0)
         }
@@ -44,8 +65,25 @@ class PostAdapter(var context: Context,var post:ArrayList<PostModel>):RecyclerVi
         }
 
 
-        holder.image_profile.setImageBitmap(resizeDrawable(context,post.get(position).profile,200,200))
-        holder.image_post.setImageBitmap(resizeDrawable(context,post.get(position).post,200,300))
+
+            database.reference.child("Users").child(post.get(position).userid).addValueEventListener(
+                object :ValueEventListener{
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists()){
+                            var userdata=snapshot.getValue(UserModel::class.java)
+                            holder.username.text=userdata!!.username
+                            Picasso.get().load(userdata.ppic).placeholder(R.drawable.white_bg).into(holder.image_profile)
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+
+                }
+            )
+            Picasso.get().load(post.get(position).postlink).placeholder(R.drawable.jaisrisitaram).into(holder.image_post)
+
 
 //        holder.image_profile.setImageDrawable(holder.view.resources.getDrawable(post.get(position).profile))
 //        holder.image_post.setImageDrawable(holder.view.resources.getDrawable(post.get(position).post))

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.socialmedia.Models.UserModel
 import com.example.socialmedia.R
@@ -60,6 +61,7 @@ class EditProfileActivity : AppCompatActivity() {
 
                 imageref.downloadUrl.addOnSuccessListener { url->
                     cpiclink=url.toString()
+                    Toast.makeText(this@EditProfileActivity,"Cover pic uploaded",Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -75,6 +77,7 @@ class EditProfileActivity : AppCompatActivity() {
             imageref.putFile(it!!).addOnSuccessListener {
                 imageref.downloadUrl.addOnSuccessListener { url->
                     ppiclink=url.toString()
+                    Toast.makeText(this@EditProfileActivity,"Profile pic uploaded",Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -121,7 +124,10 @@ class EditProfileActivity : AppCompatActivity() {
 
             database.reference.child("Users").
             child("${FirebaseAuth.getInstance().
-            currentUser?.uid}").setValue(usr)
+            currentUser?.uid}").setValue(usr).addOnSuccessListener({
+                Toast.makeText(this@EditProfileActivity,"data updated succcessfully",Toast.LENGTH_SHORT).show()
+
+            })
 
 
 

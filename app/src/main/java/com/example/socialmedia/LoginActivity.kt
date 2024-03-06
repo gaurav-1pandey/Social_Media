@@ -72,31 +72,32 @@ class LoginActivity : AppCompatActivity() {
 
 
         var btnlogin=findViewById<Button>(R.id.btn_login)
-        btnlogin.setOnClickListener({
+        btnlogin.setOnClickListener {
 //            startActivity(Intent(this,MainActivity::class.java))
 
-            etemail=findViewById(R.id.ed_reg_name)
-            etpass=findViewById(R.id.ed_login_pass)
+            etemail = findViewById(R.id.ed_reg_name)
+            etpass = findViewById(R.id.ed_login_pass)
 
-            useremail=etemail.text.toString()
-            userpass=etpass.text.toString()
+            useremail = etemail.text.toString()
+            userpass = etpass.text.toString()
 
-            auth.signInWithEmailAndPassword(useremail,userpass).addOnCompleteListener(this ){task->
-                if (task.isSuccessful){
-                    Toast.makeText(this,"Login Successfull",Toast.LENGTH_SHORT).show()
-                    shard.saveString("islogin","yes")
+            auth.signInWithEmailAndPassword(useremail, userpass)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(this, "Login Successfull", Toast.LENGTH_SHORT).show()
+                        shard.saveString("islogin", "yes")
 
-                    startActivity(Intent(this@LoginActivity,MainActivity::class.java))
-                    finish()
+                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                        finish()
+                    } else {
+                        Toast.makeText(
+                            this,
+                            "No user found, check your connection or kindly register ",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
-                else{
-                    Toast.makeText(this,"No user found, check your connection or kindly register ",Toast.LENGTH_SHORT).show()
-
-                }
-            }
-
-
-        })
+        }
 
         var tv_reg=findViewById<TextView>(R.id.tv_register_user)
 
